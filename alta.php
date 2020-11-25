@@ -19,14 +19,28 @@
         <div class="container-fluid">
             <h2>Creacion de nueva reunión</h2> <br>
 
-            <form>
-                <div class="form-group">
-                    <label for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" aria-describedby="titulo">
+           <form action="http://unpaz.net.ar:8080/v1/meeting" method="post">
+
+                 <div class="form-group">
+                    <label for="userid">Userid</label>
+                    <input type="number" class="form-control" id="userId" aria-describedby="userId" name="userId">
                 </div>
+
+
                 <div class="form-group">
-                    <label for="fecha">Fecha</label>
-                    <input type="text" class="form-control" id="fecha">
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" id="title" aria-describedby="title" name="title">
+                </div>
+
+                 <div class="form-group">
+                    <label for="description">Descripcion</label>
+                    <input type="text" class="form-control" id="description" aria-describedby="description" name="description">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="time">Fecha</label>
+                    <input type="text" class="form-control" id="time" name="time">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="index.php" class="btn btn-link">Volver</a>

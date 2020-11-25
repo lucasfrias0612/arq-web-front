@@ -20,14 +20,29 @@
             <h2>Creacion de nueva reunión</h2> <br>
 
             <form>
+
+            
+
                 <div class="form-group">
-                    <label for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" aria-describedby="titulo">
+                    <label for="userid">Userid</label>
+                    <input type="text" class="form-control" id="userid" aria-describedby="userid">
                 </div>
                 <div class="form-group">
-                    <label for="fecha">Fecha</label>
-                    <input type="text" class="form-control" id="fecha">
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" id="title" aria-describedby="title">
                 </div>
+                
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcion" aria-describedby="descripcion">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="time">Fecha</label>
+                    <input type="text" class="form-control" id="time">
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="index.php" class="btn btn-link">Volver</a>
             </form>
