@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Nueva Reunion</title>
+    <title>Editar Reunion</title>
   </head>
   <body>
     
@@ -17,9 +17,10 @@
     <main>
     <br>
         <div class="container-fluid">
-            <h2>Creacion de nueva reunión</h2> <br>
+            <h2>Editar una reunión</h2> <br>
 
 <?php
+error_reporting(0);
 if (isset($_GET['meetingid'])) {
     $meetingid= $_GET['meetingid'];
     $response = json_decode(file_get_contents('http://unpaz.net.ar:8080/v1/meeting/'.$meetingid), true);
@@ -72,8 +73,15 @@ if (isset($_GET['meetingid'])) {
                                  data: JSON.stringify(patchData),
                                  processData: false,
                                  contentType: 'application/merge-patch+json',
-                              });
+                              })
               });
+
+
+
+
+
+
+
 
               function getFormData($form){
                   var unindexed_array = $form.serializeArray();
