@@ -95,8 +95,7 @@ console.log(fetch)
                     data[i][1] = json.data[i].title;
                     data[i][2] = json.data[i].description;
                     data[i][3] = json.data[i].time;
-                    data[i][4] = `<a href="http://localhost/arq-web-front/editar.php?meetingid=${json.data[i].id}" >Editar</a> <a href="#" >Eliminar</a>`;
-
+                    data[i][4] = `<a href="http://localhost/arq-web-front/editar.php?meetingid=${json.data[i].id}" >Editar</a> <a href="http://localhost/arq-web-front/delete.php?meetingid=${json.data[i].id}" >Eliminar</a>`;
 
                 }
                 return data;

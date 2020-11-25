@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Editar Reunion</title>
+    <title>Nueva Reunion</title>
   </head>
   <body>
     
@@ -17,10 +17,9 @@
     <main>
     <br>
         <div class="container-fluid">
-            <h2>Editar una reunión</h2> <br>
+            <h2>Creacion de nueva reunión</h2> <br>
 
 <?php
-error_reporting(0);
 if (isset($_GET['meetingid'])) {
     $meetingid= $_GET['meetingid'];
     $response = json_decode(file_get_contents('http://unpaz.net.ar:8080/v1/meeting/'.$meetingid), true);
@@ -32,7 +31,7 @@ if (isset($_GET['meetingid'])) {
             <form id="reg-form">
                  <div class="form-group">
                     <label for="userid">Userid</label>
-                    <input type="text" class="form-control" id="userid" name="userId" aria-describedby="userid" value="<?php echo $response[data][userid] ?>">
+                    <input readonly type="text" class="form-control" id="userid" name="userId" aria-describedby="userid" value="<?php echo $response[data][userid] ?>">
                 </div>
                 <div class="form-group">
                     <label for="title">Título</label>
@@ -65,23 +64,16 @@ if (isset($_GET['meetingid'])) {
               $("#post-btn").click(function(){
                 let formData = getFormData($("#reg-form"));
                 let meetingid= document.getElementById('meetingid').value;
-                let patchData={meetingData: formData, userId: formData.userId, meetingId: meetingid};
+                let patchData={userId: formData.userId, meetingId: meetingid};
                 console.log(JSON.stringify(patchData));
                 $.ajax({
-                                 type: 'PATCH',
+                                 type: 'DELETE',
                                  url: 'http://unpaz.net.ar:8080/v1/meeting',
                                  data: JSON.stringify(patchData),
                                  processData: false,
                                  contentType: 'application/merge-patch+json',
-                              })
+                              });
               });
-
-
-
-
-
-
-
 
               function getFormData($form){
                   var unindexed_array = $form.serializeArray();
