@@ -58,6 +58,34 @@ try {
               </tfoot>
             </table>
         </div>
+
+            <div  class="container-fluid">
+              <h2>Usuarios</h2> <br>
+
+            <table class="table table-striped table-bordered" id="myTable_usuarios" style="width:100%">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </tfoot>
+            </table>
+
+
+            </div>
+
     </main>
 
     <!-- Optional JavaScript -->
@@ -103,6 +131,51 @@ console.log(fetch)
         }
 
     });
+
+
+
+
+
+console.log(fetch)
+ $('#myTable_usuarios').DataTable({
+
+        ordering: true,
+        searching: true,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
+        },
+        //serverSide: true,
+        ajax: {
+            url: "http://unpaz.net.ar:8080/v1/user",
+            type: "GET",
+            dataType: "json",
+            "dataSrc": function ( json ) {
+                var data = [];
+                for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
+                    data[i] = [];
+                    data[i][0] = json.data[i].id;
+                    data[i][1] = json.data[i].email;
+                    data[i][2] = json.data[i].password;
+                    data[i][3] = json.data[i].fullName;
+                    data[i][4] = `<a href="http://localhost/arq-web-front/editar.php?meetingid=${json.data[i].id}" >Editar</a> <a href="http://localhost/arq-web-front/delete.php?meetingid=${json.data[i].id}" >Eliminar</a>`;
+
+                }
+                return data;
+            }
+        }
+
+    });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
