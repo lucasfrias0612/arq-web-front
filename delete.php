@@ -31,7 +31,7 @@ if (isset($_GET['meetingid'])) {
             <form id="reg-form">
                  <div class="form-group">
                     <label for="userid">Userid</label>
-                    <input type="text" class="form-control" id="userid" name="userId" aria-describedby="userid" value="<?php echo $response[data][userid] ?>">
+                    <input readonly type="text" class="form-control" id="userid" name="userId" aria-describedby="userid" value="<?php echo $response[data][userid] ?>">
                 </div>
                 <div class="form-group">
                     <label for="title">Título</label>
@@ -64,10 +64,10 @@ if (isset($_GET['meetingid'])) {
               $("#post-btn").click(function(){
                 let formData = getFormData($("#reg-form"));
                 let meetingid= document.getElementById('meetingid').value;
-                let patchData={meetingData: formData, userId: formData.userId, meetingId: meetingid};
+                let patchData={userId: formData.userId, meetingId: meetingid};
                 console.log(JSON.stringify(patchData));
                 $.ajax({
-                                 type: 'PATCH',
+                                 type: 'DELETE',
                                  url: 'http://unpaz.net.ar:8080/v1/meeting',
                                  data: JSON.stringify(patchData),
                                  processData: false,
