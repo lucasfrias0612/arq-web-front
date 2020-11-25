@@ -14,6 +14,14 @@
                 &nbsp
                 <li class="nav-item">
                 <a class="btn btn-primary" href="alta.php" role="button">Crear Reunion</a>
+                &nbsp
+                <li class="nav-item">
+                <a class="btn btn-primary" href="alta_usuario.php" role="button">Crear Usuario</a>
+
+                
+                   
+                </li>
+
                    
                 </li>
             </ul>
