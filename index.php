@@ -157,7 +157,7 @@ console.log(fetch)
                     data[i][1] = json.data[i].email;
                     data[i][2] = json.data[i].password;
                     data[i][3] = json.data[i].fullName;
-                    data[i][4] = `<a href="http://localhost/arq-web-front/editar.php?meetingid=${json.data[i].id}" >Editar</a> <a href="http://localhost/arq-web-front/delete.php?meetingid=${json.data[i].id}" >Eliminar</a>`;
+                    data[i][4] = `<a href="http://localhost/arq-web-front/editar_usuario.php?user=${json.data[i].id}" >Editar</a> <a href="http://localhost/arq-web-front/delete_usuario.php?user=${json.data[i].id}" >Eliminar</a>`;
 
                 }
                 return data;
