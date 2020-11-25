@@ -19,11 +19,17 @@
         <div class="container-fluid">
             <h2>Creacion de nueva reunión</h2> <br>
 
+<?php
+if (isset($_GET['meetingid'])) {
+    $meetingid= $_GET['meetingid'];
+    $response = file_get_contents('http://unpaz.net.ar:8080/v1/meeting/'.$meetingid);
+    echo $response;
+} else {
+    // Fallback behaviour goes here
+}
+?>
             <form>
-
-            
-
-                <div class="form-group">
+                 <div class="form-group">
                     <label for="userid">Userid</label>
                     <input type="text" class="form-control" id="userid" aria-describedby="userid">
                 </div>

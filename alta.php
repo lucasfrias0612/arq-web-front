@@ -18,9 +18,7 @@
     <br>
         <div class="container-fluid">
             <h2>Creacion de nueva reunión</h2> <br>
-
            <form id="reg-form">
-
                  <div class="form-group">
                     <label for="userid">Userid</label>
                     <input type="number" class="form-control" id="userId" aria-describedby="userId" name="userId">
