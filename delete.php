@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Nueva Reunion</title>
+    <title>Eliminar Reunion</title>
   </head>
   <body>
     
@@ -17,9 +17,10 @@
     <main>
     <br>
         <div class="container-fluid">
-            <h2>Creacion de nueva reunión</h2> <br>
+            <h2>Eliminar una reunión</h2> <br>
 
 <?php
+error_reporting(0);
 if (isset($_GET['meetingid'])) {
     $meetingid= $_GET['meetingid'];
     $response = json_decode(file_get_contents('http://unpaz.net.ar:8080/v1/meeting/'.$meetingid), true);
@@ -35,20 +36,20 @@ if (isset($_GET['meetingid'])) {
                 </div>
                 <div class="form-group">
                     <label for="title">Título</label>
-                    <input type="text" class="form-control" id="title" name="title" aria-describedby="title" value="<?php echo $response[data][title] ?>">
+                    <input readonly type="text" class="form-control" id="title" name="title" aria-describedby="title" value="<?php echo $response[data][title] ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="descripcion">Descripcion</label>
-                    <input type="text" class="form-control" id="descripcion" name="description" aria-describedby="descripcion" value="<?php echo $response[data][description] ?>">
+                    <input readonly type="text" class="form-control" id="descripcion" name="description" aria-describedby="descripcion" value="<?php echo $response[data][description] ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="time">Fecha</label>
-                    <input type="text" class="form-control" id="time" name="time" value="<?php echo $response[data][time] ?>">
+                    <input readonly type="text" class="form-control" id="time" name="time" value="<?php echo $response[data][time] ?>">
                 </div>
 
-                <button type="button" id="post-btn" class="btn btn-primary">Submit</button>
+                <button type="button" id="post-btn" class="btn btn-primary">Eliminar</button>
                 <a href="index.php" class="btn btn-link">Volver</a>
             </form>
 
