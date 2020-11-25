@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d56db628-e63a-4f45-8c89-467e498f4138" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alta.php" beforeDir="false" afterPath="$PROJECT_DIR$/alta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editar.php" beforeDir="false" afterPath="$PROJECT_DIR$/editar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +33,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606272221421</updated>
       <workItem from="1606272223901" duration="1876000" />
-      <workItem from="1606277030072" duration="3379000" />
+      <workItem from="1606277030072" duration="6957000" />
     </task>
     <servers />
   </component>

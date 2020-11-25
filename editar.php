@@ -22,44 +22,69 @@
 <?php
 if (isset($_GET['meetingid'])) {
     $meetingid= $_GET['meetingid'];
-    $response = file_get_contents('http://unpaz.net.ar:8080/v1/meeting/'.$meetingid);
-    echo $response;
+    $response = json_decode(file_get_contents('http://unpaz.net.ar:8080/v1/meeting/'.$meetingid), true);
 } else {
     // Fallback behaviour goes here
 }
 ?>
-            <form>
+            <input type="text" id="meetingid" name="id" value="<?php echo $response[data][id] ?>" hidden>
+            <form id="reg-form">
                  <div class="form-group">
                     <label for="userid">Userid</label>
-                    <input type="text" class="form-control" id="userid" aria-describedby="userid">
+                    <input type="text" class="form-control" id="userid" name="userId" aria-describedby="userid" value="<?php echo $response[data][userid] ?>">
                 </div>
                 <div class="form-group">
                     <label for="title">Título</label>
-                    <input type="text" class="form-control" id="title" aria-describedby="title">
-                </div>
-                
-                <div class="form-group">
-                    <label for="descripcion">Descripcion</label>
-                    <input type="text" class="form-control" id="descripcion" aria-describedby="descripcion">
+                    <input type="text" class="form-control" id="title" name="title" aria-describedby="title" value="<?php echo $response[data][title] ?>">
                 </div>
 
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcion" name="description" aria-describedby="descripcion" value="<?php echo $response[data][description] ?>">
+                </div>
 
                 <div class="form-group">
                     <label for="time">Fecha</label>
-                    <input type="text" class="form-control" id="time">
+                    <input type="text" class="form-control" id="time" name="time" value="<?php echo $response[data][time] ?>">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="post-btn" class="btn btn-primary">Submit</button>
                 <a href="index.php" class="btn btn-link">Volver</a>
             </form>
 
         </div>
     </main>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  </body>
+         <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script>
+              $("#post-btn").click(function(){
+                let formData = getFormData($("#reg-form"));
+                let meetingid= document.getElementById('meetingid').value;
+                let patchData={meetingData: formData, userId: formData.userId, meetingId: meetingid};
+                console.log(patchData);
+                $.ajax({
+                                 type: 'PATCH',
+                                 url: 'http://unpaz.net.ar:8080/v1/meeting',
+                                 data: JSON.stringify(patchData),
+                                 processData: false,
+                                 contentType: 'application/merge-patch+json',
+                              });
+              });
+
+              function getFormData($form){
+                  var unindexed_array = $form.serializeArray();
+                  var indexed_array = {};
+
+                  $.map(unindexed_array, function(n, i){
+                      indexed_array[n['name']] = n['value'];
+                  });
+
+                  return indexed_array;
+              }
+        </script>
+    </body>
 </html>
