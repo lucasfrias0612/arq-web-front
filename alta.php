@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <h2>Creacion de nueva reunión</h2> <br>
 
-           <form action="http://unpaz.net.ar:8080/v1/meeting" method="post">
+           <form id="reg-form">
 
                  <div class="form-group">
                     <label for="userid">Userid</label>
@@ -42,17 +42,36 @@
                     <label for="time">Fecha</label>
                     <input type="text" class="form-control" id="time" name="time">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="post-btn" class="btn btn-primary">Submit</button>
                 <a href="index.php" class="btn btn-link">Volver</a>
             </form>
 
         </div>
     </main>
-
-    <!-- Optional JavaScript -->
+        <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+          $("#post-btn").click(function(){
+          let formData = getFormData($("#reg-form"));
+          console.log(formData);
+              $.post("http://unpaz.net.ar:8080/v1/meeting", JSON.stringify(formData), function(data) {
+                  alert(data);
+              });
+          });
+
+          function getFormData($form){
+              var unindexed_array = $form.serializeArray();
+              var indexed_array = {};
+
+              $.map(unindexed_array, function(n, i){
+                  indexed_array[n['name']] = n['value'];
+              });
+
+              return indexed_array;
+          }
+    </script>
   </body>
 </html>
