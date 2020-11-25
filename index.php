@@ -42,6 +42,7 @@ try {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Título</th>
+                  <th scope="col">Descripcion</th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Acciones</th>
                 </tr>
@@ -50,6 +51,7 @@ try {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Título</th>
+                  <th scope="col">Descripcion</th>
                   <th scope="col">Fecha</th>
                    <th scope="col">Acciones</th>
                 </tr>
@@ -91,8 +93,11 @@ console.log(fetch)
                     data[i] = [];
                     data[i][0] = json.data[i].id;
                     data[i][1] = json.data[i].title;
-                    data[i][2] = json.data[i].time;
-                    data[i][3] = '<a href="#" >link</a>';
+                    data[i][2] = json.data[i].description;
+                    data[i][3] = json.data[i].time;
+                    data[i][4] = `<a href="http://localhost/arq-web-front/editar.php?meetingid=${json.data[i].id}" >Editar</a> <a href="#" >Eliminar</a>`;
+
+
                 }
                 return data;
             }
